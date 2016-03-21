@@ -238,6 +238,8 @@ set cursorline
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
 
+" Tern for vim
+let g:tern_map_keys=1
 
 " Nerd Tree
 autocmd StdinReadPre * let s:std_in=1
@@ -351,8 +353,8 @@ set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip
 set matchpairs+=<:>     " specially for html
 
 let g:UltiSnipsSnippetsDir="~/.vim/bundle/ultisnips/Ultisnips"
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets", "angular-snippets"]
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "angular-snippets"]
+let g:UltiSnipsExpandTrigger="<f5>"
 let g:UltiSnipsJumpForwardTrigger="<c-k>"
 let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 
