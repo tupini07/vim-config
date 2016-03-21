@@ -13,7 +13,7 @@ $ ln -s ~/.vimrc ~/vim-config/.vimrc
 $ ln -s ~/.vim ~/vim-config/.vim
 ```
 
-After that's done, open up `vim` (will sort of fail at first but just continue) and type `:PluginInstall`, this will install all of the plugins.
+After that's done, open up `vim` (will sort of fail at first but just continue) and type `:PlugInstall`, this will install all of the plugins.
 
 Close vim and then enter it again, it should look pretty rad.
 
