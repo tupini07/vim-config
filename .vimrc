@@ -349,6 +349,10 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_root_markers = ['.ctrlp']
 set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip
 
+" Syntastic config
+
+let g:syntastic_javascript_checkers = ['eslint']
+
 " Match settings
 set matchpairs+=<:>     " specially for html
 
@@ -357,7 +361,6 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "angular-snippets"]
 let g:UltiSnipsExpandTrigger="<f5>"
 let g:UltiSnipsJumpForwardTrigger="<c-k>"
 let g:UltiSnipsJumpBackwardTrigger="<c-j>"
-
 
 
 " ========================================
@@ -486,7 +489,7 @@ au InsertLeave * set nopaste
 
 
 " Copy to Clipboard
-vnoremap <leader>c :w !pbcopy<CR><CR>
+vnoremap <leader>c :w !xsel --clipboard --input<CR><CR>
 
 " Pretty print JSON
 :nnoremap <leader>ppj :%!python -m json.tool<CR>
