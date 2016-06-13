@@ -1,3 +1,41 @@
+set nocompatible
+
+set nobackup
+set nowritebackup
+set guifont=Courier_New:h11:cANSI
+
+"TODO change this to dynamic home
+cd C:\Users\CSCPU36\Downloads
+
+"TODO config just for windows
+source $VIMRUNTIME/mswin.vim
+behave mswin
+
+set diffexpr=MyDiff()
+function MyDiff()
+  let opt = '-a --binary '
+  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+  let arg1 = v:fname_in
+  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+  let arg2 = v:fname_new
+  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+  let arg3 = v:fname_out
+  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+  let eq = ''
+  if $VIMRUNTIME =~ ' '
+    if &sh =~ '\<cmd'
+      let cmd = '""' . $VIMRUNTIME . '\diff"'
+      let eq = '"'
+    else
+      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+    endif
+  else
+    let cmd = $VIMRUNTIME . '\diff'
+  endif
+  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+endfunction
+
 " Maintainer:	Daniel Prado <danazkari@gmail.com>
 
 
@@ -21,11 +59,6 @@ if &shell =~# 'fish$'
     set shell=sh
 endif
 
-if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
-else
-  set backup		" keep a backup file
-endif
 set history=500		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
@@ -100,6 +133,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
 
+Plug 'Chiel92/vim-autoformat'
+
 Plug 'altercation/vim-colors-solarized'
 
 Plug 'gf3/vim-css-color'
@@ -169,9 +204,11 @@ call plug#end()
 " Personal Settings
 " ========================================
 
+noremap <F3> :Autoformat<CR>
 
-" Set where backups go
-set backupdir=~/.vim/backup
+
+"~/.vim/backup Set where backups go
+set backupdir=C:\Program\ Files\ (x86)\Vim\vim74\backup
 set noswapfile
 
 
@@ -184,8 +221,8 @@ set hidden
 set autoindent
 set smartindent
 set smarttab
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
 set expandtab
 "set softtabstop=2
 
@@ -434,7 +471,7 @@ map <S-l> :tablast<CR>
 nmap ,w :w<CR>
 nmap ,x :x<CR>
 
-" Map for Search/Replate Trailing White space
+" Map for Search/Replace Trailing White space
 :nnoremap <leader>ws :call DeleteTrailingWS()<CR>
 
 " Toggle GitGutter
@@ -509,3 +546,4 @@ au BufNewFile,BufRead *.ejs set filetype=html
 
 " Set jsx for .js files as well as .jsx
 let g:jsx_ext_required = 0
+
