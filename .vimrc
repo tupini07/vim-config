@@ -204,8 +204,6 @@ call plug#end()
 " Personal Settings
 " ========================================
 
-noremap <F3> :Autoformat<CR>
-
 
 "~/.vim/backup Set where backups go
 set backupdir=C:\Program\ Files\ (x86)\Vim\vim74\backup
@@ -459,6 +457,16 @@ vnoremap <silent> # :<C-U>
 " Remap keys used for tabs
 :nnoremap <leader>J J
 
+" F3 for autoformat
+noremap <F3> :Autoformat<CR>
+
+" Mapping to move lines
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " Map some keys for easier tab usage
 map <S-h> :tabfirst<CR>
