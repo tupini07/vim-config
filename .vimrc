@@ -208,6 +208,23 @@ call plug#end()
 " Personal Settings
 " ========================================
 
+" Autocomplete Settings
+
+" Insert longest common text of all matches and show menu even 
+" if there is only one option
+:set completeopt=longest,menuone
+
+" Use enter to select entry from autocomplete menu
+:inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" When C-n pressed simulate a down press: keeps a menu item always highlighted
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+" simulates <C-X><C-O> to bring up the omni completion menu, then it simulates <C-N><C-P> to remove the longest common text, and finally it simulates <Down> again to keep a match highlighted.
+inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
+  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
 
 "~/.vim/backup Set where backups go
 set backupdir=C:\Program\ Files\ (x86)\Vim\vim74\backup
@@ -558,4 +575,5 @@ au BufNewFile,BufRead *.ejs set filetype=html
 
 " Set jsx for .js files as well as .jsx
 let g:jsx_ext_required = 0
+
 
