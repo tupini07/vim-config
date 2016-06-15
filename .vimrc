@@ -125,6 +125,11 @@ else
 
 endif " has("autocmd")
 
+" If a search is done something containing uppercase characters, it will do a case sensitive search; 
+" if a search is done for something purely lowercase, it will do a case insensitive search. 
+" Behaviour can be overriden with the use of \c and \C
+set smartcase
+
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
@@ -155,6 +160,8 @@ Plug 'vim-scripts/jade.vim'
 
 Plug 'pangloss/vim-javascript'
 
+Plug 'davidhalter/jedi-vim'
+
 Plug 'plasticboy/vim-markdown'
 
 Plug 'tpope/vim-rails'
@@ -170,6 +177,8 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/lint.vim'
 
 Plug 'scrooloose/nerdtree'
+
+Plug 'honza/vim-snippets' " Default snippets package
 
 Plug 'scrooloose/syntastic'
 
@@ -201,7 +210,6 @@ Plug 'sickill/vim-monokai'
 
 Plug 'mattn/emmet-vim'
 
-Plug 'davidhalter/jedi-vim'
 
 call plug#end()
 
