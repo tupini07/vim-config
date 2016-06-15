@@ -45,7 +45,6 @@ endif
 
 " Disable graphical tabs
 set guioptions=gm
-set editing-mode vi
 
 " Maintainer:	Daniel Prado <danazkari@gmail.com>
 
@@ -225,9 +224,9 @@ Plug 'mattn/emmet-vim'
 " Themes:
 Plug 'sickill/vim-monokai'
 
-Plugin 'jnurmine/Zenburn'
+Plug 'jnurmine/Zenburn'
 
-Plugin 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 
 
 call plug#end()
