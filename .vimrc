@@ -1,5 +1,6 @@
 "TODO change this to dynamic home
 cd C:\Users\CSCPU36\Downloads
+set encoding=utf-8
 
 if has("win32")
   set nocompatible
@@ -8,8 +9,10 @@ if has("win32")
   set nowritebackup
   
   " To make sure text displays correctly
+  let g:airline_powerline_fonts = 1
   set guifont=Courier_New:h11:cANSI
   
+  " Tell to use windows configuration
   source $VIMRUNTIME/mswin.vim
   behave mswin
   
@@ -39,6 +42,10 @@ if has("win32")
   endfunction
 endif
 
+
+" Disable graphical tabs
+set guioptions=gm
+set editing-mode vi
 
 " Maintainer:	Daniel Prado <danazkari@gmail.com>
 
@@ -142,6 +149,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
 
+Plug 'nvie/vim-flake8'
+
 Plug 'Chiel92/vim-autoformat'
 
 Plug 'altercation/vim-colors-solarized'
@@ -156,6 +165,8 @@ Plug 'tpope/vim-haml'
 
 Plug 'nono/vim-handlebars'
 
+Plug 'vim-scripts/indentpython.vim'
+
 Plug 'vim-scripts/jade.vim'
 
 Plug 'pangloss/vim-javascript'
@@ -169,6 +180,8 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
 
 Plug 'vim-ruby/vim-ruby'
+
+Plug 'tmhedberg/SimpylFold'
 
 Plug 'wavded/vim-stylus'
 
@@ -200,15 +213,21 @@ Plug 'lambdatoast/elm.vim'
 
 Plug 'isRuslan/vim-es6'
 
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'elzr/vim-json'
 
+Plug 'mattn/emmet-vim'
+
+
+" Themes:
 Plug 'sickill/vim-monokai'
 
-Plug 'mattn/emmet-vim'
+Plugin 'jnurmine/Zenburn'
+
+Plugin 'altercation/vim-colors-solarized'
 
 
 call plug#end()
@@ -218,7 +237,19 @@ call plug#end()
 " Personal Settings
 " ========================================
 
-" Autocomplete Settings
+" When folding docstrings will still be visible
+let g:SimpylFold_docstring_preview=1
+
+" Pretty code
+let python_highlight_all=1
+syntax on
+
+if has('gui_running')
+  set background=dark
+  colorscheme solarized
+else
+  colorscheme zenburn
+endif
 
 " Insert longest common text of all matches and show menu even 
 " if there is only one option
@@ -260,6 +291,7 @@ set t_Co=256
 
 " Folding
 set foldmethod=indent
+set foldlevel=99
 set foldnestmax=8
 set nofoldenable
 set cmdheight=2
@@ -290,7 +322,7 @@ syntax on
 " let g:solarized_italic=1
 " let g:solarized_bold=1
 " let g:solarized_underline=1
-colorscheme monokai
+" colorscheme monokai
 " set background=dark
 
 
@@ -308,6 +340,7 @@ autocmd WinLeave * setlocal nocursorline
 let g:tern_map_keys=1
 
 " Nerd Tree
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore .pyc files in NERDTree
 autocmd StdinReadPre * let s:std_in=1
 autocmd vimenter * if !argc() | NERDTree | endif
 let NERDTreeShowHidden=1
@@ -326,7 +359,6 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
-nmap <silent> <c-n> :NERDTreeToggle<CR>
 
 " Command mode completion
 
@@ -469,9 +501,26 @@ vnoremap <silent> # :<C-U>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 
 
+" python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+
 " ========================================
 " Custom Mappings
 " ========================================
+
+" Space in normal mode will fold code
+nnoremap <space> za
+
+
+nmap <silent> <c-n> :NERDTreeToggle<CR>
 
 
 " Quick Edit for .vimrc
@@ -586,4 +635,22 @@ au BufNewFile,BufRead *.ejs set filetype=html
 " Set jsx for .js files as well as .jsx
 let g:jsx_ext_required = 0
 
+" Autoindent settings in Python files
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
+
+" Mark extra white space
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+" Autoindent settings in js, html and css files
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
 
