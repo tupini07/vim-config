@@ -201,6 +201,8 @@ Plug 'sickill/vim-monokai'
 
 Plug 'mattn/emmet-vim'
 
+Plug 'davidhalter/jedi-vim'
+
 call plug#end()
 
 
