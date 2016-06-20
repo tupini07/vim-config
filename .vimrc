@@ -236,6 +236,9 @@ call plug#end()
 " Personal Settings
 " ========================================
 
+" Use C-r to replace selected text
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
 " When folding docstrings will still be visible
 let g:SimpylFold_docstring_preview=1
 
