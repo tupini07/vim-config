@@ -7,15 +7,15 @@ if has("win32")
 
   set nobackup
   set nowritebackup
-  
+
   " To make sure text displays correctly
   let g:airline_powerline_fonts = 1
   set guifont=Courier_New:h11:cANSI
-  
+
   " Tell to use windows configuration
   source $VIMRUNTIME/mswin.vim
   behave mswin
-  
+
   set diffexpr=MyDiff()
   function MyDiff()
     let opt = '-a --binary '
@@ -131,8 +131,8 @@ else
 
 endif " has("autocmd")
 
-" If a search is done something containing uppercase characters, it will do a case sensitive search; 
-" if a search is done for something purely lowercase, it will do a case insensitive search. 
+" If a search is done something containing uppercase characters, it will do a case sensitive search;
+" if a search is done for something purely lowercase, it will do a case insensitive search.
 " Behaviour can be overriden with the use of \c and \C
 set smartcase
 
@@ -151,8 +151,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'nvie/vim-flake8'
 
 Plug 'Chiel92/vim-autoformat'
-
-Plug 'altercation/vim-colors-solarized'
 
 Plug 'gf3/vim-css-color'
 
@@ -246,14 +244,17 @@ let g:SimpylFold_docstring_preview=1
 let python_highlight_all=1
 syntax on
 
-if has('gui_running')
-  set background=dark
-  colorscheme solarized
-else
-  colorscheme zenburn
-endif
+" if has('gui_running')
+"   set background=dark
+"   colorscheme solarized
+" else
+"   colorscheme zenburn
+" endif
+set background=light
+colorscheme solarized
 
-" Insert longest common text of all matches and show menu even 
+
+" Insert longest common text of all matches and show menu even
 " if there is only one option
 :set completeopt=longest,menuone
 
@@ -451,6 +452,15 @@ set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip
 
 " Syntastic config
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_shell=$PATH
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 
 " Match settings
@@ -650,9 +660,8 @@ au BufNewFile,BufRead *.py
 " Mark extra white space
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-" Autoindent settings in js, html and css files
-au BufNewFile,BufRead *.js, *.html, *.css
+" Autoindent settings in js, *jsx, html and css files
+au BufNewFile,BufRead *.js, *.html, *.css, *.jsx
     \ set tabstop=2
     \ set softtabstop=2
     \ set shiftwidth=2
-
