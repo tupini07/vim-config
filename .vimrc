@@ -1,6 +1,4 @@
-"TODO change this to dynamic home
-cd C:\Users\CSCPU36\Downloads
-set encoding=utf-8
+cd C:\Users\CSCPU36
 
 if has("win32")
   set nocompatible
@@ -43,6 +41,7 @@ if has("win32")
 endif
 
 
+"TODO change this to dynamic home
 " Disable graphical tabs
 set guioptions=gm
 
@@ -189,6 +188,8 @@ Plug 'vim-scripts/lint.vim'
 Plug 'scrooloose/nerdtree'
 
 Plug 'honza/vim-snippets' " Default snippets package
+
+Plug 'mtscout6/syntastic-local-eslint.vim'
 
 Plug 'scrooloose/syntastic'
 
@@ -351,14 +352,14 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 nmap ,n :NERDTreeFind<CR>
 
 let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
+    \ "Modified"  : "�",
+    \ "Staged"    : "�",
+    \ "Untracked" : "�",
+    \ "Renamed"   : "�",
+    \ "Unmerged"  : "�",
+    \ "Deleted"   : "�",
+    \ "Dirty"     : "�",
+    \ "Clean"     : "�",
     \ "Unknown"   : "?"
     \ }
 
@@ -432,15 +433,15 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
+let g:airline_left_sep = '�'
+let g:airline_left_alt_sep = '�'
+let g:airline_right_sep = '�'
+let g:airline_right_alt_sep = '�'
 
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.crypt = ''
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.readonly = '�'
+let g:airline_symbols.crypt = '�'
+let g:airline_symbols.linenr = '�'
+let g:airline_symbols.branch = '�'
 
 let g:airline_detect_iminsert=1
 let g:airline#extensions#syntastic#enabled = 1
