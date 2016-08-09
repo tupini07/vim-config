@@ -1,10 +1,13 @@
-cd C:\Users\CSCPU36
+set encoding=utf-8
 
+set nobackup
+set nowritebackup
+  
 if has("win32")
+  "TODO change this to dynamic home
+  cd C:\Users\CSCPU36\Downloads
   set nocompatible
 
-  set nobackup
-  set nowritebackup
 
   " To make sure text displays correctly
   let g:airline_powerline_fonts = 1
@@ -41,7 +44,6 @@ if has("win32")
 endif
 
 
-"TODO change this to dynamic home
 " Disable graphical tabs
 set guioptions=gm
 
@@ -151,6 +153,8 @@ Plug 'nvie/vim-flake8'
 
 Plug 'Chiel92/vim-autoformat'
 
+Plug 'altercation/vim-colors-solarized'
+
 Plug 'gf3/vim-css-color'
 
 Plug 'kchmck/vim-coffee-script'
@@ -188,8 +192,6 @@ Plug 'vim-scripts/lint.vim'
 Plug 'scrooloose/nerdtree'
 
 Plug 'honza/vim-snippets' " Default snippets package
-
-Plug 'mtscout6/syntastic-local-eslint.vim'
 
 Plug 'scrooloose/syntastic'
 
@@ -245,15 +247,12 @@ let g:SimpylFold_docstring_preview=1
 let python_highlight_all=1
 syntax on
 
-" if has('gui_running')
-"   set background=dark
-"   colorscheme solarized
-" else
-"   colorscheme zenburn
-" endif
-set background=light
-colorscheme solarized
-
+if has('gui_running')
+  set background=dark
+  colorscheme solarized
+else
+  colorscheme zenburn
+endif
 
 " Insert longest common text of all matches and show menu even
 " if there is only one option
@@ -352,14 +351,14 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 nmap ,n :NERDTreeFind<CR>
 
 let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "�",
-    \ "Staged"    : "�",
-    \ "Untracked" : "�",
-    \ "Renamed"   : "�",
-    \ "Unmerged"  : "�",
-    \ "Deleted"   : "�",
-    \ "Dirty"     : "�",
-    \ "Clean"     : "�",
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
     \ "Unknown"   : "?"
     \ }
 
@@ -433,15 +432,15 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
-let g:airline_left_sep = '�'
-let g:airline_left_alt_sep = '�'
-let g:airline_right_sep = '�'
-let g:airline_right_alt_sep = '�'
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
 
-let g:airline_symbols.readonly = '�'
-let g:airline_symbols.crypt = '�'
-let g:airline_symbols.linenr = '�'
-let g:airline_symbols.branch = '�'
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.crypt = ''
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.branch = '⎇'
 
 let g:airline_detect_iminsert=1
 let g:airline#extensions#syntastic#enabled = 1
@@ -453,16 +452,15 @@ set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip
 
 " Syntastic config
 
+let g:syntastic_javascript_checkers = ['eslint']
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_shell=$PATH
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
 
 " Match settings
 set matchpairs+=<:>     " specially for html
@@ -661,8 +659,8 @@ au BufNewFile,BufRead *.py
 " Mark extra white space
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-" Autoindent settings in js, *jsx, html and css files
-au BufNewFile,BufRead *.js, *.html, *.css, *.jsx
+" Autoindent settings in js, html and css files
+au BufNewFile,BufRead *.js, *.html, *.css
     \ set tabstop=2
     \ set softtabstop=2
     \ set shiftwidth=2
