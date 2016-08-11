@@ -149,6 +149,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
 
+Plug 'vim-scripts/BufOnly.vim' " Close unused buffers with :BufOnly
+
 Plug 'nvie/vim-flake8'
 
 Plug 'Chiel92/vim-autoformat'
