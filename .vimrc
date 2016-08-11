@@ -149,7 +149,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
 
-Plug 'vim-scripts/BufOnly.vim' " Close unused buffers with :BufOnly
+Plug 'vim-scripts/BufOnly.vim'
 
 Plug 'nvie/vim-flake8'
 
@@ -193,9 +193,11 @@ Plug 'vim-scripts/lint.vim'
 
 Plug 'scrooloose/nerdtree'
 
-Plug 'honza/vim-snippets' " Default snippets package
-
 Plug 'scrooloose/syntastic'
+
+Plug 'scrooloose/nerdcommenter'
+
+Plug 'honza/vim-snippets' " Default snippets package
 
 Plug 'airblade/vim-gitgutter'
 
@@ -662,7 +664,7 @@ au BufNewFile,BufRead *.py
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " Autoindent settings in js, html and css files
-au BufNewFile,BufRead *.js, *.html, *.css
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
+" au BufNewFile,BufRead *.js, *.html, *.css
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
